@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List</RootNamespace>
-    <StartupObject>Linked_List.SinglyLinkedList</StartupObject>
+    <StartupObject>Linked_List.DoublyLinkedList</StartupObject>
   </PropertyGroup>
 
 </Project>
