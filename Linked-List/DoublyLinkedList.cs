@@ -15,6 +15,7 @@ namespace Linked_List
                 head = newNode;
             else
             {
+                head.previousNode = newNode;
                 newNode.nextNode = head;
                 newNode.previousNode = null;
                 head = newNode;
@@ -29,10 +30,11 @@ namespace Linked_List
                 head = newNode;
             else
             {
-                var temp = head;
-                while(temp.nextNode != null)
-                    temp = temp.nextNode;
-                temp.nextNode = newNode;
+                var currentNode = head;
+                while(currentNode.nextNode != null)
+                    currentNode = currentNode.nextNode;
+                currentNode.nextNode = newNode;
+                newNode.previousNode = currentNode;
             }
             this.length++;
         }
@@ -40,12 +42,65 @@ namespace Linked_List
         //0 Based indexing
         private void InsertAtLocation(int data, int index)
         {
-            //TODO
+            var newNode = CreateNewNode(data);
+            var currentNode = head;
+            var currentIndex = 0;
+            if(index == 0)
+            {
+                newNode.nextNode = currentNode;
+                currentNode.previousNode = newNode;
+                head = newNode;
+                this.length++;
+            }
+            else
+            {
+                while(currentNode != null && currentIndex < index)
+                {
+                    currentNode = currentNode.nextNode;
+                    currentIndex++;
+                }
+
+                newNode.nextNode = currentNode.nextNode;
+                newNode.previousNode = currentNode;
+                if(currentNode.nextNode != null)    
+                    currentNode.nextNode.previousNode = newNode;
+                currentNode.nextNode = newNode;
+                this.length++;
+            }
         }
         private void InsertMultiNodeAtBeginning(IList<int> data)
         {
             foreach (var item in data)
                 InsertAtBeginning(item);
+        }
+
+        private void DeleteAtBeginning()
+        {
+            var currentNode = head;
+            if (head == null)
+                Console.WriteLine("Empty Linked List, can't perform delete operation");
+            else
+            {
+                head = currentNode.nextNode;
+                currentNode = null;
+                this.length--;
+            }
+        }
+
+        private void DeleteAtEnd()
+        {
+            var currentNode = head;
+            if (head == null)
+                Console.WriteLine("Empty linked list, can't perform delete operation");
+            else
+            {
+                while(currentNode.nextNode != null)
+                    currentNode = currentNode.nextNode;
+
+                currentNode.previousNode.nextNode = null;
+                currentNode = null;
+                this.length--;
+            }    
         }
         
         private void InsertMultiNodeAtEnd(IList<int> data)
@@ -83,6 +138,11 @@ namespace Linked_List
             //Insert
             doublyLinkedList.InsertMultiNodeAtBeginning(beginning_data);
             doublyLinkedList.InsertMultiNodeAtEnd(end_data);
+            doublyLinkedList.InsertAtLocation(100, 6);
+
+            //Delete
+            doublyLinkedList.DeleteAtBeginning();
+            doublyLinkedList.DeleteAtEnd();
 
             //Utilities
             doublyLinkedList.Display();
