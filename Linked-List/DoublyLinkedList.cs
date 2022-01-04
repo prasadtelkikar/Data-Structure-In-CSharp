@@ -102,6 +102,36 @@ namespace Linked_List
                 this.length--;
             }    
         }
+
+        private void DeleteAtLocation(int position)
+        {
+            var currentIndex = 0;
+            var currentNode = head; 
+            if (head == null)
+                Console.WriteLine("Empty linked list, can't perform delete operation");
+            else if(position == 0)
+            {
+                head = head.nextNode;
+                this.length--;
+            }
+            else
+            {
+                while (currentIndex < position && currentNode.nextNode != null)
+                {
+                    currentIndex++;
+                    currentNode = currentNode.nextNode;
+                }
+
+                var previousNode = currentNode.previousNode;
+                if (previousNode != null)
+                    previousNode.nextNode = currentNode.nextNode;
+                if(currentNode.nextNode!=null)
+                    currentNode.nextNode.previousNode = previousNode;
+
+                currentNode = null;
+                this.length--;
+            }
+        }
         
         private void InsertMultiNodeAtEnd(IList<int> data)
         {
@@ -143,6 +173,7 @@ namespace Linked_List
             //Delete
             doublyLinkedList.DeleteAtBeginning();
             doublyLinkedList.DeleteAtEnd();
+            doublyLinkedList.DeleteAtLocation(6);
 
             //Utilities
             doublyLinkedList.Display();
