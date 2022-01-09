@@ -11,13 +11,9 @@ namespace Linked_List
         private void InsertAtBeginning(int data)
         {
             var newNode = CreateNewNode(data);
-            if (head == null)
-                head = newNode;
-            else
-            {
+            if (head != null)
                 newNode.next = head;
-                head = newNode;
-            }
+            head = newNode;
             this.length++;
         }
 
@@ -29,8 +25,8 @@ namespace Linked_List
                 head = newNode;
             else
             {
-                while(currentNode.next != null)
-                    currentNode = currentNode.next; 
+                while (currentNode.next != null)
+                    currentNode = currentNode.next;
                 currentNode.next = newNode;
             }
             this.length++;
@@ -54,7 +50,7 @@ namespace Linked_List
             var currentNode = head;
             Node previousNode = null;
             var currentIndex = 0;
-            if(index == 0)
+            if (index == 0)
             {
                 newNode.next = currentNode;
                 head = newNode;
@@ -63,7 +59,7 @@ namespace Linked_List
             else
             {
                 //Traverse the list until the position where we want to insert
-                while(currentNode != null && currentIndex < index)
+                while (currentNode != null && currentIndex < index)
                 {
                     currentIndex++;
                     previousNode = currentNode;
@@ -99,7 +95,7 @@ namespace Linked_List
                 Console.WriteLine("Linked List is already empty, can't delete node anymore");
             else
             {
-                while(currentNode.next != null)
+                while (currentNode.next != null)
                 {
                     previousNode = currentNode;
                     currentNode = currentNode.next;
@@ -150,9 +146,9 @@ namespace Linked_List
                 Console.WriteLine("Empty Linked List");
             else
             {
-                while(currentNode != null)
+                while (currentNode != null)
                 {
-                    if(currentNode.next != null)
+                    if (currentNode.next != null)
                         Console.Write($"{currentNode.data} -> ");
                     else
                         Console.WriteLine($"{currentNode.data} -> NULL");
@@ -171,7 +167,7 @@ namespace Linked_List
             var currentNode = head;
             var count = 0;
 
-            while(currentNode != null)
+            while (currentNode != null)
             {
                 count++;
                 currentNode = currentNode.next;
@@ -181,7 +177,7 @@ namespace Linked_List
         private Node CreateNewNode(int data) => new Node(data);
         public static void Main(string[] args)
         {
-            var beginning_data = new List<int>() { 6, 5, 4, 3, 2, 1};
+            var beginning_data = new List<int>() { 6, 5, 4, 3, 2, 1 };
             var end_data = new List<int>() { 10, 20, 30, 40, 50, 60 };
 
             SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
