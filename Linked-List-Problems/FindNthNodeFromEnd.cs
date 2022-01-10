@@ -18,7 +18,7 @@ namespace Linked_List_Problems
                 this.length++;
                 return;
             }
-            newNode.NexNode = head;
+            newNode.NextNode = head;
             head = newNode;
             this.length++;
         }
@@ -33,7 +33,7 @@ namespace Linked_List_Problems
         private int GetLength()
         {
             var count = 0;
-            for (Node currentNode = head; currentNode != null; currentNode=currentNode.NexNode, count++) ;
+            for (Node currentNode = head; currentNode != null; currentNode=currentNode.NextNode, count++) ;
             return count;
         }
 
@@ -48,7 +48,7 @@ namespace Linked_List_Problems
                 return -1;
             }
             for (int currnetIndex = 0; currnetIndex < nthFromFirst; currnetIndex++)
-                currentNode = currentNode.NexNode;
+                currentNode = currentNode.NextNode;
             return currentNode.Data;
         }
         private Node CreateNewNode(int data) => new Node(data);
@@ -56,9 +56,9 @@ namespace Linked_List_Problems
         private void Display()
         {
             var index = 0;
-            for (var currentNode = head; currentNode != null; currentNode=currentNode.NexNode, index++)
+            for (var currentNode = head; currentNode != null; currentNode=currentNode.NextNode, index++)
             {
-                if (currentNode.NexNode != null)
+                if (currentNode.NextNode != null)
                     Console.Write($"Data:{currentNode.Data} Index:{(index)} -> ");
                 else
                     Console.WriteLine($"Data:{currentNode.Data} Index:{(index)} -> NULL");
@@ -84,12 +84,12 @@ namespace Linked_List_Problems
         private class Node
         {
             public int Data { get; set; }
-            public Node NexNode { get; set; }
+            public Node NextNode { get; set; }
 
             public Node(int data)
             {
                 this.Data = data;
-                this.NexNode = null;
+                this.NextNode = null;
             }
         }
     }
