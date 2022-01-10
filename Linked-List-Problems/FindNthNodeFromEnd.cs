@@ -42,7 +42,7 @@ namespace Linked_List_Problems
             var length = GetLength();
             var nthFromFirst = length - nthFromEnd;
             var currentNode = head;
-            if(nthFromEnd > length)
+            if (nthFromEnd > length)
             {
                 Console.WriteLine("Fewer nodes are available than given index");
                 return -1;
@@ -52,16 +52,34 @@ namespace Linked_List_Problems
             return currentNode.Data;
         }
         private Node CreateNewNode(int data) => new Node(data);
-        
-        //TODO: Display method
+
+        private void Display()
+        {
+            var index = 0;
+            for (var currentNode = head; currentNode != null; currentNode=currentNode.NexNode, index++)
+            {
+                if (currentNode.NexNode != null)
+                    Console.Write($"Data:{currentNode.Data} Index:{(index)} -> ");
+                else
+                    Console.WriteLine($"Data:{currentNode.Data} Index:{(index)} -> NULL");
+            }
+        }
+
         public static void Main(string[] args)
         {
             var elements = new List<int> { 1, 2, 3, 4, 5, 6 };
+
+            Console.WriteLine("Enter node index to be removed");
+            var nodeToBeRemoved = int.Parse(Console.ReadLine());
+            
             FindNthNodeFromEnd findNthNodeFromEnd = new FindNthNodeFromEnd();
             findNthNodeFromEnd.InsertMultiple(elements);
-            var result = findNthNodeFromEnd.FindNthNodeDataFromEnd(8);
-            Console.WriteLine($"Length of given list = {findNthNodeFromEnd.GetLength()}");
-            Console.WriteLine($"Nth Node from End = {result}. (-1 denotes not in the range)");
+
+            findNthNodeFromEnd.Display();
+            var result = findNthNodeFromEnd.FindNthNodeDataFromEnd(nodeToBeRemoved);
+
+            //-1 denotes not in the range
+            Console.WriteLine($"Removed {nodeToBeRemoved} Node from End = {result}.");
         }
         private class Node
         {
