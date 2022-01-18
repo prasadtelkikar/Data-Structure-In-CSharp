@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Linked_List_Problems
 {
-    public class FindNthNodeFromEnd_1
+    public class FindNthNodeFromEnd_2
     {
         private Node head = null;
         private int length = 0;
@@ -52,22 +52,19 @@ namespace Linked_List_Problems
             }
         }
 
-        private int FindNthNodeFromEnd(int nthNodeFromEnd)
+        private int FindNthNodeFromEnd(int nthNodeFromEndIndex)
         {
-            Dictionary<int, Node> nodeWithIndex = new Dictionary<int, Node>();
-            int length = 0; //We can use nodeWithIndex.Count();
+            Node currentNode = head;
+            Node nthNodeFromEnd = head;
+            for(int i = 0;i < nthNodeFromEndIndex; i++)
+                currentNode = currentNode.NextNode;
+            while(currentNode!= null)
+            {
+                currentNode = currentNode.NextNode;
+                nthNodeFromEnd = nthNodeFromEnd.NextNode;
+            }
 
-            for (Node currentNode = head; currentNode != null; currentNode = currentNode.NextNode, length++)
-                nodeWithIndex.Add(length, currentNode);
-
-            var nthNodeFromFirst = length - nthNodeFromEnd;
-
-            //Return -1 if the range is out of bound
-            if (nodeWithIndex.ContainsKey(nthNodeFromFirst))
-                return nodeWithIndex[nthNodeFromFirst].Data;
-            else
-                return -1;
-
+            return nthNodeFromEnd?.Data ?? -1;
         }
 
         public static void Main(string[] args)
@@ -75,16 +72,16 @@ namespace Linked_List_Problems
             var elements = new List<int> { 1, 2, 3, 4, 5, 6 };
 
             Console.WriteLine("Enter node index from end");
-            var nodeIndexFromEnd = int.Parse(Console.ReadLine());
+            var nthNodeIndexFromEnd = int.Parse(Console.ReadLine());
 
-            FindNthNodeFromEnd_1 findNthNodeFromEnd = new FindNthNodeFromEnd_1();
+            FindNthNodeFromEnd_2 findNthNodeFromEnd = new FindNthNodeFromEnd_2();
             findNthNodeFromEnd.InsertMultiple(elements);
 
             findNthNodeFromEnd.Display();
-            var result = findNthNodeFromEnd.FindNthNodeFromEnd(nodeIndexFromEnd);
+            var result = findNthNodeFromEnd.FindNthNodeFromEnd(nthNodeIndexFromEnd);
 
             //-1 denotes not in the range
-            Console.WriteLine($"{nodeIndexFromEnd} Node from End = {result}.");
+            Console.WriteLine($"{nthNodeIndexFromEnd} Node from End = {result}.");
         }
         private class Node
         {
@@ -97,7 +94,6 @@ namespace Linked_List_Problems
                 this.Data= data;
                 this.NextNode = null;
             }
-
         }
     }
 }

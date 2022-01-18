@@ -69,17 +69,17 @@ namespace Linked_List_Problems
         {
             var elements = new List<int> { 1, 2, 3, 4, 5, 6 };
 
-            Console.WriteLine("Enter node index to be removed");
-            var nodeToBeRemoved = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter node index from end");
+            var nodeIndexFromEnd = int.Parse(Console.ReadLine());
             
             FindNthNodeFromEnd findNthNodeFromEnd = new FindNthNodeFromEnd();
             findNthNodeFromEnd.InsertMultiple(elements);
 
             findNthNodeFromEnd.Display();
-            var result = findNthNodeFromEnd.FindNthNodeDataFromEnd(nodeToBeRemoved);
+            var result = findNthNodeFromEnd.FindNthNodeDataFromEnd(nodeIndexFromEnd);
 
             //-1 denotes not in the range
-            Console.WriteLine($"Removed {nodeToBeRemoved} Node from End = {result}.");
+            Console.WriteLine($"{nodeIndexFromEnd} Node from End = {result}.");
         }
         private class Node
         {
