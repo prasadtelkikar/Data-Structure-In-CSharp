@@ -30,14 +30,6 @@ namespace Linked_List_Problems
                 InsertAtBeginning(element);
         }
 
-        //Alternate way(efficient) way is to use length variable
-        private int GetLength()
-        {
-            var count = 0;
-            for (Node currentNode = head; currentNode != null; currentNode=currentNode.NextNode, count++) ;
-            return count;
-        }
-
         private Node CreateNewNode(int data) => new Node(data);
 
         private void Display()
