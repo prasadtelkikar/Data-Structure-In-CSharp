@@ -54,9 +54,9 @@ namespace Linked_List_Problems
             cyclicLinkedList_BruteForce.InsertMultiple(elements);
 
             //Cyclic third to sixth
-            //var thirdNode = cyclicLinkedList_BruteForce.head.NextNode.NextNode.NextNode;
-            //var lastNode = cyclicLinkedList_BruteForce.head.NextNode.NextNode.NextNode.NextNode?.NextNode;
-            //lastNode.NextNode = thirdNode;
+            var thirdNode = cyclicLinkedList_BruteForce.head.NextNode.NextNode.NextNode;
+            var lastNode = cyclicLinkedList_BruteForce.head.NextNode.NextNode.NextNode.NextNode?.NextNode;
+            lastNode.NextNode = thirdNode;
 
             var isCyclic = cyclicLinkedList_BruteForce.IsLinkedListCyclic();
             Console.WriteLine(isCyclic ? "Linked list is cyclic" : "Linked list is not a cyclic");
