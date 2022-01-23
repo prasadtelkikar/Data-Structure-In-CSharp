@@ -43,6 +43,19 @@ namespace Linked_List_Problems
             return false;
         }
 
+        //Using dictionary
+        private bool IsLinkedListCyclicDict()
+        {
+            Dictionary<Node, int> dict = new Dictionary<Node, int>();
+            for(var currentNode = head; currentNode != null; currentNode = currentNode.NextNode)
+            {
+                if (dict.ContainsKey(currentNode))
+                    return true;
+                else
+                    dict.Add(currentNode, currentNode.Data);
+            }
+            return false;
+        }
         private Node CreateNewNode(int data) => new Node(data);
 
         public static void Main(string[] args)
@@ -56,7 +69,7 @@ namespace Linked_List_Problems
             var lastNode = snakeVsSnail_obj.head.NextNode.NextNode.NextNode.NextNode?.NextNode;
             lastNode.NextNode = thirdNode;
 
-            var isCyclic = snakeVsSnail_obj.IsLinkedListCyclic();
+            var isCyclic = snakeVsSnail_obj.IsLinkedListCyclicDict();
 
             Console.WriteLine(isCyclic ? "Given linked list is Snail" : "Given linked list is Snake");
         }
