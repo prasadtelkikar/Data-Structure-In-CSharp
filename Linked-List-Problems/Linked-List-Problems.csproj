@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List_Problems</RootNamespace>
-    <StartupObject>Linked_List_Problems.CyclicLinkedList_StartNodeOfLoop</StartupObject>
+    <StartupObject>Linked_List_Problems.CyclicLinkedList_LengthOfCycle</StartupObject>
   </PropertyGroup>
 
 </Project>
