@@ -35,23 +35,25 @@ namespace Linked_List_Problems
             }
         }
 
-        //TODO: Bug in the recurssion. Need to fix
-        private Node ReveseLinkedListRecursively(Node head)
+        //Help: https://youtu.be/KYH83T4q6Vs
+        private Node ReveseLinkedListRecursively(Node currentNode)
         {
-            if (head == null)
+            if (currentNode == null)
                 return null;
-            else if (head.NextNode == null)
-                return head;
+            else if (currentNode.NextNode == null)
+                return currentNode;
 
             //Recursively reach to the last node
-            var temp = ReveseLinkedListRecursively(head.NextNode);
+            var newHeadNode = ReveseLinkedListRecursively(currentNode.NextNode);
 
-            //Reverse logic
-            var lastNode = temp;
-            lastNode.NextNode = head;
-            head.NextNode = null;
+            //Get the next node of current Node.
+            var actualNextOfCurrentNode = currentNode.NextNode;
+            //For first Pass actualNextOfCurrentNode.NextNode will set to last node of the list.
+            actualNextOfCurrentNode.NextNode = currentNode;
+            //Move null one by one to create end of the list.
+            currentNode.NextNode = null;
 
-            return temp;
+            return newHeadNode;
         }
 
         private Node CreateNewNode(int data) => new Node(data);
@@ -68,7 +70,7 @@ namespace Linked_List_Problems
             var reverseList = reverseObj.ReveseLinkedListRecursively(reverseObj.head);
 
             Console.WriteLine("After Reverse");
-            reverseObj.Display(reverseObj.head);
+            reverseObj.Display(reverseList);
         }
 
         private class Node
