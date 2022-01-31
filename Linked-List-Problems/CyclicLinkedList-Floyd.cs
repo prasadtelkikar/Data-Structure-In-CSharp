@@ -64,7 +64,7 @@ namespace Linked_List_Problems
             Console.WriteLine(isCyclic ? "Given linked list is Cyclic" : "Given linked list NOT a Cyclic");
 
         }
-        public class Node
+        private class Node
         {
             public int Data { get; set; }
             public Node NextNode { get; set; }

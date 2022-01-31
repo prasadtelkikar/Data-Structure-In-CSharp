@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List_Problems</RootNamespace>
-    <StartupObject>Linked_List_Problems.ReverseLinkedList_OnlyPrint_Reverse</StartupObject>
+    <StartupObject>Linked_List_Problems.FindJoiningPoint_1</StartupObject>
   </PropertyGroup>
 
 </Project>
