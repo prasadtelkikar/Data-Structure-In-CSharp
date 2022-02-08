@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Linked_List_Problems
 {
-    public class FindJoiningPoint_3
+    public class FindJoiningPoint_4
     {
         private Node firstHead = null;
         private Node secondHead = null;
@@ -33,42 +35,32 @@ namespace Linked_List_Problems
                 }
             }
         }
+
         private int? FindCommonPoint()
         {
-            Stack<Node> firstListStack = new Stack<Node>();
-            Stack<Node> secondListStack = new Stack<Node>();
-            for (Node currentNode = firstHead; currentNode != null; currentNode=currentNode.NextNode)
-                firstListStack.Push(currentNode);
+            Dictionary<Node, int> nodes = new Dictionary<Node, int>();
+            for(Node currentNode = firstHead; currentNode!= null;currentNode=currentNode.NextNode)
+                nodes.Add(currentNode, currentNode.Data);
+
             for (Node currentNode = secondHead; currentNode != null; currentNode=currentNode.NextNode)
-                secondListStack.Push(currentNode);
+                if(nodes.ContainsKey(currentNode))
+                    return nodes[currentNode];
 
-            int? temp = null;
-            while (true)
-            {
-                Node firstListTop = firstListStack.Pop();
-                Node secondListTop = secondListStack.Pop();
-                if (firstListTop != secondListTop && firstListTop.Data != secondListTop.Data)
-                    return temp;
-                else
-                    temp = firstListTop.Data;
-
-                if (firstListTop == null || secondListTop == null)
-                    return temp;
-            }
+            return null;
         }
         private Node CreateNewNode(int data) => new Node(data);
 
         public static void Main(string[] args)
         {
-            FindJoiningPoint_3 findJoiningPoint_3 = new FindJoiningPoint_3();
+            FindJoiningPoint_4 findJoiningPoint_4 = new FindJoiningPoint_4();
 
             var firstLinkedListData = new List<int>() { 600, 500, 400, 300, 200, 100 };
             var secondLinkedListData = new List<int>() { 250, 200, 150, 100, 50 };
-            findJoiningPoint_3.InsertMultiple(firstLinkedListData);
-            findJoiningPoint_3.InsertMultiple(secondLinkedListData, false);
+            findJoiningPoint_4.InsertMultiple(firstLinkedListData);
+            findJoiningPoint_4.InsertMultiple(secondLinkedListData, false);
 
-            findJoiningPoint_3.secondHead.NextNode.NextNode.NextNode.NextNode.NextNode = findJoiningPoint_3.firstHead.NextNode.NextNode;
-            int? result = findJoiningPoint_3.FindCommonPoint();
+            findJoiningPoint_4.secondHead.NextNode.NextNode.NextNode.NextNode.NextNode = findJoiningPoint_4.firstHead.NextNode.NextNode;
+            int? result = findJoiningPoint_4.FindCommonPoint();
             Console.WriteLine(result != null ? $"Common point of both the lists is = {result}" : "Both  linked lists are parallel");
         }
         private class Node
