@@ -4,23 +4,19 @@ using System.Text;
 
 namespace Linked_List_Problems
 {
-    public class EvenOdd_1
+    public class EvenOdd_3
     {
         private Node head = null;
-        private int length = 0;
-
         private void InsertAtBeginning(int data)
         {
             var newNode = CreateNewNode(data);
             if (head == null)
             {
                 head = newNode;
-                this.length++;
                 return;
             }
             newNode.NextNode = head;
             head = newNode;
-            this.length++;
         }
 
         private void InsertMultiple(IList<int> elements)
@@ -34,18 +30,25 @@ namespace Linked_List_Problems
                 Console.Write(currentNode.NextNode != null ? $"{currentNode.Data} -> " : $"{currentNode.Data} -> NULL{Environment.NewLine}");
         }
 
-        private bool IsEven() => this.length % 2 == 0;
+        private bool IsEven()
+        {
+            var currentNode = head;
+            while (currentNode != null && currentNode.NextNode != null)
+                currentNode = currentNode.NextNode.NextNode;
+
+            return currentNode == null;
+        }
 
         private Node CreateNewNode(int data) => new Node(data);
-
         public static void Main(string[] args)
         {
             var elements = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
-            EvenOdd_1 evenOdd1 = new EvenOdd_1();
-            evenOdd1.InsertMultiple(elements);
+            EvenOdd_3 evenOdd3 = new EvenOdd_3();
+            evenOdd3.InsertMultiple(elements);
 
-            evenOdd1.Display();
-            Console.WriteLine(evenOdd1.IsEven() ? "Given Linked list is Even" : "Given Linked list is Odd");
+            evenOdd3.Display();
+            Console.WriteLine(evenOdd3.IsEven() ? "Given Linked list is Even" : "Given Linked list is Odd");
+
         }
         private class Node
         {
@@ -54,5 +57,4 @@ namespace Linked_List_Problems
             public Node(int data) => this.Data = data;
         }
     }
-
- }
+}
