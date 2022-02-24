@@ -102,6 +102,5 @@ namespace Linked_List_Problems
             public Node NextNode { get; set; }
             public Node(int data) => this.Data = data;
         }
-
     }
 }
