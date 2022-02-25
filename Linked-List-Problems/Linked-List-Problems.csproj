@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List_Problems</RootNamespace>
-    <StartupObject>Linked_List_Problems.ReversePair_SwapData_Recursively</StartupObject>
+    <StartupObject>Linked_List_Problems.LinkedList_Sum</StartupObject>
   </PropertyGroup>
 
 </Project>
