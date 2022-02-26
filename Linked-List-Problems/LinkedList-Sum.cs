@@ -28,6 +28,7 @@ namespace Linked_List_Problems
                 InsertAtBeginning(element);
         }
 
+        //Source: https://stackoverflow.com/q/71255834/6299857
         private (int, int) Sum()
         {
             var firstLinkedListLength = Math.Floor(length/2d);
