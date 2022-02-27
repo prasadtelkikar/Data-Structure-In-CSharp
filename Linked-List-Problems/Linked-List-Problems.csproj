@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List_Problems</RootNamespace>
-    <StartupObject>Linked_List_Problems.LinkedList_Sum</StartupObject>
+    <StartupObject>Linked_List_Problems.CircularList_Split</StartupObject>
   </PropertyGroup>
 
 </Project>

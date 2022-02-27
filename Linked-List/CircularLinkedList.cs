@@ -14,7 +14,11 @@ namespace Linked_List
         {
             var newNode = CreateNewNode(data);
             if(head == null)
+            {
                 head = newNode;
+                newNode.nextData = head;
+
+            }
             else
             {
                 var previousNode = head;
