@@ -7,18 +7,16 @@ namespace Linked_List_Problems
     public class IsLinkedListPalindrome
     {
         private Node head = null;
-        private int length = 0;
+        private Node secondHalf = null;
         private void InsertAtBeginning(int data)
         {
             var newNode = CreateNewNode(data);
             if (head == null)
             {
                 head = newNode;
-                length++;
                 return;
             }
             newNode.NextNode = head;
-            length++;
             head = newNode;
         }
 
@@ -28,36 +26,45 @@ namespace Linked_List_Problems
                 InsertAtBeginning(element);
         }
 
-        //Buggy code, need to fix
         private bool IsPalindrome()
         {
-            Node middle = FindMiddleNode();
-            Node reverseList = ReverseLinkedList();
-            while (reverseList != null && middle != null)
+            FindMiddleNode();
+            ReverseLinkedList();
+            bool isPalin = CompareList(head, secondHalf);
+            return isPalin;
+        }
+
+        private bool CompareList(Node head, Node secondHalf)
+        {
+            Node temp1 = head;
+            Node temp2 = secondHalf;
+            while (temp1 != null && temp2 != null)
             {
-                if (reverseList.Data != middle.Data)
+                if(temp1.Data != temp2.Data)
                     return false;
-                reverseList = reverseList.NextNode;
-                middle = middle.NextNode;
+                temp1 = temp1.NextNode;
+                temp2 = temp2.NextNode;
             }
             return true;
         }
 
-        private Node ReverseLinkedList()
+
+        private void ReverseLinkedList()
         {
-            Node currentNode = head;
-            Node n = null;
+            Node previous = null;
+            Node currentNode = secondHalf;
+            Node next = null;
             while(currentNode != null)
             {
-                var temp = currentNode.NextNode;
-                currentNode.NextNode = n;
-                n = currentNode;
-                currentNode = temp;
+                next = currentNode.NextNode;
+                currentNode.NextNode = previous;
+                previous = currentNode;
+                currentNode = next;
             }
-            return n;
+            secondHalf = previous;
         }
 
-        private Node FindMiddleNode()
+        private void FindMiddleNode()
         {
             Node fastNode = head;
             Node slowNode = head;
@@ -66,7 +73,10 @@ namespace Linked_List_Problems
                 fastNode = fastNode.NextNode.NextNode;
                 slowNode = slowNode.NextNode;
             }
-            return slowNode;
+            //This is required when list is of odd size.
+            if(fastNode != null)
+                slowNode = slowNode.NextNode;
+            secondHalf = slowNode;
         }
 
         private void Display(Node head)
@@ -78,7 +88,7 @@ namespace Linked_List_Problems
 
         public static void Main(string[] args)
         {
-            var elements = new List<int> {3, 2, 1, 3, 2, 1 };
+            var elements = new List<int> {1, 2, 3, 4, 3, 2, 1 };
             IsLinkedListPalindrome isPalindrome = new IsLinkedListPalindrome();
             isPalindrome.InsertMultiple(elements);
 
@@ -87,6 +97,8 @@ namespace Linked_List_Problems
 
             var result = isPalindrome.IsPalindrome();
             Console.WriteLine(result ? "Yes list is palindrome" : "No list is not a palindrome");
+
+            //After isPalindrome check, linked list is distrub. We need extra logic to make it correct
         }
         private class Node
         {
