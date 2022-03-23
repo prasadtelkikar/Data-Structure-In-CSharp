@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Linked_List_Problems</RootNamespace>
-    <StartupObject>Linked_List_Problems.SquareRoot</StartupObject>
+    <StartupObject>Linked_List_Problems.FindFractional</StartupObject>
   </PropertyGroup>
 
 </Project>
