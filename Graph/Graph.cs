@@ -22,10 +22,11 @@ namespace Graph
             return true;
         }
 
+        //Edge from vertex1 to Vertex2 i.e. vertex1 -> vertex2
         public bool AddEdge(string vertex1, string vertex2)
         {
             this.AdjacencyList.Find(x => x.Name == vertex1).Edges.Add(vertex2);
-            this.AdjacencyList.Find(x => x.Name == vertex2).Edges.Add(vertex1);
+            //this.AdjacencyList.Find(x => x.Name == vertex2).Edges.Add(vertex1);
 
             return true;
 
@@ -134,9 +135,7 @@ namespace Graph
                         queue.Enqueue(AdjacencyList.Find(x => x.Name == neighbor));
                     }
                 }
-
             }
-
             return result;
         }
     }
